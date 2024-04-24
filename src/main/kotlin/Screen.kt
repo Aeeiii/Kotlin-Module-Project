@@ -35,7 +35,7 @@ open class Screen {
                     val selectNumberScreen = SelectNumberScreen()
                     val number = selectNumberScreen.selectNumber(list)
                     if (number >= 0 ) screen.goToNextScreen(number)
-                } else println("Пока ничего не создано")
+                } else println("Открывать нечего, сначала создайте что-нибудь")
             }
             "2" -> return false
             else -> println("Ввод некорректен, повторите ввод")

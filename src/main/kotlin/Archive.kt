@@ -1,5 +1,5 @@
 class Archive (
-    val name: String,
+    private val name: String,
     var noteList: MutableList<Note> = mutableListOf()
 )
 {
