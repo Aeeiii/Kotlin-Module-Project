@@ -1,7 +1,29 @@
 open class Screen {
-    open fun goToNextScreen() {}
-    open fun showScreen() {}
+    open fun goToNextScreen(i: Int) {}
+    inline fun <reified T> showScreen(list: MutableList<T>) { // функция вывода инфы на экраны архивов и заметок
+        val textOne: String
+        val textTwo: String
+        val textThree: String
 
+        when (T::class.qualifiedName) {
+            "Archive" -> {
+                textOne = "архивов"
+                textTwo = "Архив"
+                textThree = "архив"
+            }
+            else -> {
+                textOne = "заметок"
+                textTwo = "Заметка"
+                textThree = "заметку"
+            }
+        }
+        while (true) {
+            println("Список $textOne:")
+            printListNames(list, textTwo)
+            println("0. Создать $textThree\n1. Открыть $textThree\n2. Выход")
+            if (!selectOption(list, this)) break
+        }
+    }
     inline fun <reified T> selectOption (list: MutableList<T>, screen: Screen) : Boolean {  // функция, считывающая команду из меню списка архивов/заметок
         when (readln()) {
             "0" -> {
@@ -9,7 +31,10 @@ open class Screen {
             }
             "1"-> {
                 if (list.size > 0) {
-                    screen.goToNextScreen()
+                    println("Введите номер, который хотите открыть")
+                    val selectNumberScreen = SelectNumberScreen()
+                    val number = selectNumberScreen.selectNumber(list)
+                    if (number >= 0 ) screen.goToNextScreen(number)
                 } else println("Пока ничего не создано")
             }
             "2" -> return false

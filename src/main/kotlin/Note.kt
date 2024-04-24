@@ -1,7 +1,7 @@
 class Note(private val name: String, private val text: String){
 
     override fun toString(): String {
-        return "Заметка ${this.name}"
+        return this.name
     }
 
     fun takeText(): String {

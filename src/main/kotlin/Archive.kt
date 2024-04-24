@@ -4,6 +4,6 @@ class Archive (
 )
 {
     override fun toString(): String {
-        return "Архив ${this.name}"
+        return this.name
     }
 }
